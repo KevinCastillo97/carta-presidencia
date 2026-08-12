@@ -178,10 +178,9 @@ Ciudadano(a) de ${municipio}, ${departamento}`;
           {/* Widget Verificación Captcha */}
           <div className="my-4 flex justify-center bg-slate-50 p-3 rounded-lg border border-slate-200">
             <Turnstile
-              sitekey="1x00000000000000000000AA" // Clave pública universal de prueba de Cloudflare
-              onVerify={(token) => setCaptchaToken(token)}
-            />
-          </div>
+  sitekey="0x4AAAAAAENqN3dr0KC1_jkW"
+  onVerify={(token) => setCaptchaToken(token)}
+/>
 
           <div className="space-y-3 pt-2">
             <button
