@@ -176,21 +176,21 @@ Ciudadano(a) de ${municipio}, ${departamento}`;
           </div>
 
           {/* Widget Verificación Captcha */}
-          {/* Widget Verificación Captcha */}
-      <div className="my-4 flex justify-center">
-        <Turnstile
-          sitekey="0x4AAAAAAENqN3dr0KC1_jkW"
-          onVerify={(token) => setCaptchaToken(token)}
-        />
-      </div>
+          <div className="my-4 flex justify-center bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <Turnstile
+              sitekey="0x4AAAAAAENqN3dr0KC1_jkW"
+              onVerify={(token) => setCaptchaToken(token)}
+            />
+          </div>
 
           <div className="space-y-3 pt-2">
             <button
               onClick={generarPDF}
+              disabled={!captchaToken}
               className={`w-full font-semibold py-3.5 px-4 rounded-xl transition shadow-sm flex items-center justify-center gap-2 text-sm ${
                 captchaToken
                   ? 'bg-blue-700 hover:bg-blue-800 text-white cursor-pointer'
-                  : 'bg-slate-300 text-slate-500 cursor-not-allowed'
+                  : 'bg-slate-300 text-slate-500 cursor-not-allowed opacity-60'
               }`}
             >
               <span>📄</span> 1. Descargar Carta en PDF
@@ -198,10 +198,11 @@ Ciudadano(a) de ${municipio}, ${departamento}`;
 
             <button
               onClick={enviarCorreo}
+              disabled={!captchaToken}
               className={`w-full font-semibold py-3.5 px-4 rounded-xl transition shadow-sm flex items-center justify-center gap-2 text-sm ${
                 captchaToken
                   ? 'bg-emerald-700 hover:bg-emerald-800 text-white cursor-pointer'
-                  : 'bg-slate-300 text-slate-500 cursor-not-allowed'
+                  : 'bg-slate-300 text-slate-500 cursor-not-allowed opacity-60'
               }`}
             >
               <span>✉️</span> 2. Abrir Correo y Enviar a Presidencia
