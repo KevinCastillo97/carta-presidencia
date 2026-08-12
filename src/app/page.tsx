@@ -12,11 +12,11 @@ export default function Home() {
 
   const validarFormulario = () => {
     if (!nombre || !departamento || !municipio) {
-      alert('Por favor completa todos los campos (Nombre, Departamento y Municipio)');
+      alert('Por favor completa Nombre, Departamento y Municipio.');
       return false;
     }
     if (!captchaToken) {
-      alert('Por favor completa la verificación de seguridad (Captcha) para continuar.');
+      alert('Completa la verificación anti-bot (Captcha) primero.');
       return false;
     }
     return true;
@@ -90,7 +90,7 @@ export default function Home() {
     doc.save(`Carta_Presidencia_${nombre.replace(/\s+/g, '_')}.pdf`);
   };
 
-  const enviarCorreo = () => {
+  const abrirCorreo = () => {
     if (!validarFormulario()) return;
 
     const emailDestino = 'contacto@presidencia.gov.co';
@@ -99,9 +99,9 @@ export default function Home() {
     const cuerpoMensaje = 
 `Señor Presidente de la República,
 
-Por medio del presente mensaje, yo, ${nombre}, residente del municipio de ${municipio}, ${departamento}, presento formalmente mi exigencia para la aceptación inmediata de la ayuda humanitaria internacional destinada a atender la emergencia nacional.
+Por medio del presente mensaje, yo, ${nombre}, residente de ${municipio}, ${departamento}, presento formalmente mi exigencia para la aceptación inmediata de la ayuda humanitaria internacional.
 
-Adjunto a este correo electrónico la carta formal en formato PDF firmada en mi calidad de ciudadano(a) colombiano(a) en ejercicio de mi soberanía constitucional.
+Adjunto a este correo electrónico mi carta formal firmada en formato PDF.
 
 Atentamente,
 ${nombre}
@@ -112,163 +112,147 @@ Ciudadano(a) de ${municipio}, ${departamento}`;
   };
 
   return (
-    <main className="min-h-screen bg-slate-100 py-6 px-4 sm:px-6 lg:px-12 font-sans text-slate-800">
-      {/* Encabezado Principal */}
-      <header className="max-w-6xl mx-auto text-center mb-8">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
+    <main className="min-h-screen bg-slate-100 py-8 px-4 sm:px-6 lg:px-12 font-sans text-slate-800">
+      <header className="max-w-5xl mx-auto text-center mb-8">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2">
           Exigencia Ciudadana a Presidencia
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
-          Genera tu carta personalizada en PDF y envíala directamente a Presidencia exigiendo la aceptación de la ayuda humanitaria internacional.
+        <p className="text-slate-600">
+          Completa tus datos en 3 simples pasos para redactar y enviar tu exigencia oficial.
         </p>
       </header>
 
-      {/* Contenedor Principal */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* COLUMNA IZQUIERDA: Formulario */}
-        <section className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 lg:sticky lg:top-8">
-          <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2 border-b pb-3 border-slate-100">
-            <span>📝</span> Tu Información
-          </h2>
-
-          <div className="space-y-4 mb-4">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Nombre Completo
-              </label>
-              <input
-                type="text"
-                placeholder="Ej: María Rodríguez"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-                className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none transition text-slate-900 text-sm"
+        {/* PANEL DE CONTROL / FLUJO DE 3 PASOS */}
+        <section className="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+          
+          {/* PASO 1 */}
+          <div className="mb-6 pb-6 border-b border-slate-100">
+            <h3 className="text-sm font-extrabold text-blue-700 uppercase tracking-wider mb-2">
+              Paso 1: Verificación Humana
+            </h3>
+            <div className="flex justify-center bg-slate-50 p-2 rounded-lg border border-slate-200">
+              <Turnstile
+                sitekey="0x4AAAAAAENqN3dr0KC1_jkW"
+                onVerify={(token) => setCaptchaToken(token)}
               />
             </div>
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* PASO 2 */}
+          <div className="mb-6 pb-6 border-b border-slate-100">
+            <h3 className="text-sm font-extrabold text-blue-700 uppercase tracking-wider mb-3">
+              Paso 2: Ingresa tus Datos
+            </h3>
+            <div className="space-y-3">
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  Departamento
-                </label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Nombre Completo</label>
                 <input
                   type="text"
-                  placeholder="Ej: Santander"
-                  value={departamento}
-                  onChange={(e) => setDepartamento(e.target.value)}
-                  className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none transition text-slate-900 text-sm"
+                  placeholder="Ej: María Rodríguez"
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                  className="w-full p-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-600 outline-none"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  Municipio
-                </label>
-                <input
-                  type="text"
-                  placeholder="Ej: Bucaramanga"
-                  value={municipio}
-                  onChange={(e) => setMunicipio(e.target.value)}
-                  className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none transition text-slate-900 text-sm"
-                />
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 mb-1">Departamento</label>
+                  <input
+                    type="text"
+                    placeholder="Ej: Santander"
+                    value={departamento}
+                    onChange={(e) => setDepartamento(e.target.value)}
+                    className="w-full p-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-600 outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 mb-1">Municipio</label>
+                  <input
+                    type="text"
+                    placeholder="Ej: Bucaramanga"
+                    value={municipio}
+                    onChange={(e) => setMunicipio(e.target.value)}
+                    className="w-full p-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-600 outline-none"
+                  />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Widget Verificación Captcha */}
-          <div className="my-4 flex justify-center bg-slate-50 p-3 rounded-lg border border-slate-200">
-            <Turnstile
-              sitekey="0x4AAAAAAENqN3dr0KC1_jkW"
-              onVerify={(token) => setCaptchaToken(token)}
-            />
+          {/* PASO 3 */}
+          <div>
+            <h3 className="text-sm font-extrabold text-blue-700 uppercase tracking-wider mb-3">
+              Paso 3: Descarga y Envía
+            </h3>
+            <div className="space-y-3">
+              <button
+                onClick={generarPDF}
+                disabled={!captchaToken}
+                className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition flex items-center justify-center gap-2 ${
+                  captchaToken
+                    ? 'bg-blue-600 hover:bg-blue-700 text-white cursor-pointer shadow-md'
+                    : 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                }`}
+              >
+                📥 1º Descargar Carta PDF
+              </button>
+
+              <button
+                onClick={abrirCorreo}
+                disabled={!captchaToken}
+                className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition flex items-center justify-center gap-2 ${
+                  captchaToken
+                    ? 'bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer shadow-md'
+                    : 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                }`}
+              >
+                ✉️ 2º Abrir App de Correo
+              </button>
+            </div>
+            <p className="text-[11px] text-slate-500 mt-3 text-center">
+              💡 Descarga el PDF y adjúntalo en la ventana de correo que se abrirá automáticamente.
+            </p>
           </div>
 
-          <div className="space-y-3 pt-2">
-            <button
-              onClick={generarPDF}
-              disabled={!captchaToken}
-              className={`w-full font-semibold py-3.5 px-4 rounded-xl transition shadow-sm flex items-center justify-center gap-2 text-sm ${
-                captchaToken
-                  ? 'bg-blue-700 hover:bg-blue-800 text-white cursor-pointer'
-                  : 'bg-slate-300 text-slate-500 cursor-not-allowed opacity-60'
-              }`}
-            >
-              <span>📄</span> 1. Descargar Carta en PDF
-            </button>
-
-            <button
-              onClick={enviarCorreo}
-              disabled={!captchaToken}
-              className={`w-full font-semibold py-3.5 px-4 rounded-xl transition shadow-sm flex items-center justify-center gap-2 text-sm ${
-                captchaToken
-                  ? 'bg-emerald-700 hover:bg-emerald-800 text-white cursor-pointer'
-                  : 'bg-slate-300 text-slate-500 cursor-not-allowed opacity-60'
-              }`}
-            >
-              <span>✉️</span> 2. Abrir Correo y Enviar a Presidencia
-            </button>
-          </div>
-
-          <p className="text-xs text-slate-500 mt-4 text-center">
-            🔒 Protegido con verificación humana anti-bot.
-          </p>
         </section>
 
-        {/* COLUMNA DERECHA: Vista Previa */}
-        <section className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-2xl shadow-md border border-slate-200">
-          <div className="flex items-center justify-between border-b pb-4 mb-6 border-slate-100">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-              Vista previa del documento
-            </span>
-            <span className="text-xs bg-slate-100 text-slate-600 font-medium px-2.5 py-1 rounded-full">
-              Formato Oficial
-            </span>
+        {/* VISTA PREVIA CARTA */}
+        <section className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+          <div className="border-b pb-3 mb-4 flex justify-between items-center">
+            <span className="text-xs font-bold uppercase text-slate-400">Vista Previa de la Carta</span>
+            <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">Documento Oficial</span>
           </div>
 
-          <article className="prose prose-slate max-w-none text-slate-800 text-xs sm:text-sm leading-relaxed space-y-4">
-            <p className="text-right font-semibold text-slate-600">
+          <article className="text-xs sm:text-sm text-slate-800 space-y-3 leading-relaxed">
+            <p className="text-right font-semibold text-slate-500">
               {municipio || '[Municipio]'}, {departamento || '[Departamento]'}, {new Date().toLocaleDateString('es-CO')}
             </p>
 
-            <div className="space-y-1">
-              <p className="font-bold text-slate-900 mb-0">Para:</p>
-              <p className="font-semibold text-slate-800 mb-0">Doctor Abelardo de la Espriella</p>
-              <p className="text-slate-600 mt-0">Presidente de la República de Colombia<br />Palacio de Nariño, Bogotá D.C.</p>
+            <div>
+              <p className="font-bold">Para:</p>
+              <p className="font-semibold">Doctor Abelardo de la Espriella</p>
+              <p className="text-slate-600">Presidente de la República de Colombia<br />Palacio de Nariño, Bogotá D.C.</p>
             </div>
 
-            <p className="font-bold text-slate-900 border-l-2 border-slate-900 pl-3 py-0.5">
-              Asunto: Exigencia ciudadana inmediata para la aceptación de ayuda humanitaria internacional
+            <p className="font-bold border-l-2 border-slate-900 pl-2">
+              Asunto: Exigencia ciudadana inmediata para la acceptance de ayuda humanitaria internacional
             </p>
 
             <p>Señor Presidente:</p>
+            <p>Nos dirigimos a usted en un momento crítico para la nación, donde miles de familias colombianas enfrentan una emergencia desgarradora que requiere soluciones inmediatas...</p>
 
-            <p>
-              Nos dirigimos a usted en un momento crítico para la nación, donde miles de familias colombianas enfrentan una emergencia desgarradora que requiere soluciones inmediatas, pragmáticas y sin sesgos políticos.
-            </p>
-
-            <p>
-              Hemos recibido con profunda preocupación e indignación su decisión de rechazar la ayuda humanitaria brindada por la comunidad internacional. Ante una crisis de esta magnitud, dar la espalda a la cooperación global no solo es una irresponsabilidad institucional, sino una medida insensible que pone en riesgo directo la vida, la salud y el bienestar del pueblo colombiano.
-            </p>
-
-            <p>
-              Es necesario recordarle con claridad que usted no se manda solo. El poder que ejerce le fue delegado por la ciudadanía para proteger a la nación, no para anteponer posturas personales o políticas sobre la supervivencia de la gente.
-            </p>
-
-            <div className="bg-amber-50/70 border-l-4 border-amber-500 p-4 rounded-r-lg my-4">
-              <p className="font-bold text-amber-900 m-0">
-                Esta no es una sugerencia; es una orden directa del pueblo colombiano y es de obligatorio cumplimiento.
-              </p>
+            <div className="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r text-amber-900 font-bold">
+              Esta no es una sugerencia; es una orden directa del pueblo colombiano y es de obligatorio cumplimiento.
             </div>
 
-            <div className="pt-6 border-t border-slate-200">
-              <p className="font-bold text-slate-900 mb-1">Atentamente,</p>
-              <p className="font-bold text-blue-700 text-base mb-0">
-                {nombre || '[Tu Nombre Aquí]'}
-              </p>
-              <p className="text-slate-600 mt-0">
-                Ciudadano(a) de {municipio || '[Municipio]'}, {departamento || '[Departamento]'}<br />
-                En ejercicio de su soberanía constitucional
-              </p>
+            <div className="pt-4 border-t border-slate-100">
+              <p className="font-bold">Atentamente,</p>
+              <p className="font-bold text-blue-600 text-base">{nombre || '[Tu Nombre]'}</p>
+              <p className="text-slate-500">Ciudadano(a) de {municipio || '[Municipio]'}, {departamento || '[Departamento]'}</p>
             </div>
           </article>
         </section>
