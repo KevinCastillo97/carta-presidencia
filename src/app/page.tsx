@@ -98,16 +98,47 @@ export default function Home() {
     const emailDestino = 'contacto@presidencia.gov.co';
     const asuntoPredeterminado = `EXIGENCIA CIUDADANA - INGRESO DE EQUIPOS DE RESCATE - ${municipio.toUpperCase()}, ${departamento.toUpperCase()}`;
     
+    const fechaActual = new Date().toLocaleDateString('es-CO', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
     const cuerpoMensaje = 
-`Señor Presidente de la República,
+`${municipio}, ${departamento}, ${fechaActual}
 
-Por medio del presente mensaje, yo, ${nombre}, residente de ${municipio}, ${departamento}, presento formalmente mi exigencia para la aceptación e ingreso inmediato de los equipos internacionales especializados en búsqueda y rescate.
+Para:
+Doctor Abelardo de la Espriella
+Presidente de la República de Colombia
+Palacio de Nariño, Bogotá D.C.
 
-Adjunto a este correo electrónico mi carta formal firmada en formato PDF.
+Asunto: Exigencia ciudadana inmediata para la aceptación de ayuda humanitaria
+
+Señor Presidente:
+
+Nos dirigimos a usted en un momento crítico para la nación, donde miles de familias colombianas enfrentan una emergencia desgarradora que requiere soluciones inmediatas, pragmáticas y sin sesgos políticos.
+
+Hemos recibido con profunda preocupación e indignación la decisión de rechazar la ayuda ofrecida por países dispuestos a enviar personal especializado en búsqueda y rescate, aun cuando existen personas atrapadas bajo los escombros y cada minuto que transcurre puede significar la diferencia entre la vida y la muerte.
+
+La aceptación de insumos y suministros humanitarios, aunque necesaria, resulta insuficiente frente a una emergencia de esta naturaleza. Lo que se necesita con urgencia es permitir el ingreso de los equipos humanos capacitados para localizar, rescatar y brindar atención inmediata a las víctimas.
+
+Es necesario recordarle con claridad que usted no se manda solo. El poder que usted ejerce le fue otorgado por el pueblo colombiano para proteger y servir a la nación, no para anteponer posturas personales o políticas a la vida y supervivencia de sus ciudadanos.
+
+Por lo tanto, la ciudadanía colombiana exige de manera categórica:
+
+1. Autorización inmediata de los equipos de rescate: Iniciar de forma urgente los trámites y protocolos necesarios para permitir el ingreso al territorio nacional de los equipos internacionales especializados en búsqueda, rescate y atención de víctimas que se encuentren dispuestos a colaborar en esta emergencia.
+
+2. Priorización de la vida: Poner todos los recursos nacionales e internacionales disponibles a disposición directa de las comunidades afectadas, garantizando transparencia, coordinación y celeridad en las labores de búsqueda, rescate y atención humanitaria.
+
+Esta no es una sugerencia. Es una orden dictada por el pueblo colombiano frente a una emergencia en la que cada minuto cuenta y en la que toda posibilidad de salvar una vida debe ser aprovechada.
+
+Exigimos que actúe a la altura de las circunstancias que el país requiere. La vida y la dignidad de los colombianos están por encima de cualquier consideración personal, política o gubernamental.
 
 Atentamente,
+
 ${nombre}
-Ciudadano(a) de ${municipio}, ${departamento}`;
+Ciudadano(a) de ${municipio}, ${departamento}
+En ejercicio de sus derechos ciudadanos`;
 
     const mailtoUrl = `mailto:${emailDestino}?subject=${encodeURIComponent(asuntoPredeterminado)}&body=${encodeURIComponent(cuerpoMensaje)}`;
     window.location.href = mailtoUrl;
@@ -120,13 +151,13 @@ Ciudadano(a) de ${municipio}, ${departamento}`;
           Exigencia Ciudadana a Presidencia
         </h1>
         <p className="text-slate-600">
-          Completa tus datos en 3 simples pasos para redactar y enviar tu exigencia oficial.
+          Completa tus datos para generar el PDF y redactar el correo oficial dirigido a Presidencia.
         </p>
       </header>
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* PANEL DE CONTROL / FLUJO DE 3 PASOS */}
+        {/* PANEL DE CONTROL / FLUJO */}
         <section className="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
           
           {/* PASO 1 */}
@@ -212,11 +243,11 @@ Ciudadano(a) de ${municipio}, ${departamento}`;
                     : 'bg-slate-200 text-slate-400 cursor-not-allowed'
                 }`}
               >
-                ✉️ 2º Abrir App de Correo
+                ✉️ 2º Redactar y Enviar Correo
               </button>
             </div>
             <p className="text-[11px] text-slate-500 mt-3 text-center">
-              💡 Descarga el PDF y adjúntalo en la ventana de correo que se abrirá automáticamente.
+              💡 El correo ya incluirá todo el texto redactado automáticamente. Si deseas, puedes adjuntar el PDF descargado.
             </p>
           </div>
 
