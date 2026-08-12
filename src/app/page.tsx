@@ -34,7 +34,7 @@ export default function Home() {
 
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(11);
-    doc.text(`Ciudad y fecha: ${municipio}, ${departamento}, ${fecha}`, 20, 20);
+    doc.text(`${municipio}, ${departamento}, ${fecha}`, 20, 20);
 
     doc.text('Para:', 20, 30);
     doc.text('Doctor Abelardo de la Espriella', 20, 36);
@@ -53,23 +53,25 @@ export default function Home() {
       '',
       'Nos dirigimos a usted en un momento crítico para la nación, donde miles de familias colombianas enfrentan una emergencia desgarradora que requiere soluciones inmediatas, pragmáticas y sin sesgos políticos.',
       '',
-      'Hemos recibido con profunda preocupación e indignación su decisión de rechazar la ayuda humanitaria brindada por la comunidad internacional. Ante una crisis de esta magnitud, dar la espalda a la cooperación global no solo es una irresponsabilidad institucional, sino una medida insensible que pone en riesgo directo la vida, la salud y el bienestar del pueblo colombiano.',
+      'Hemos recibido con profunda preocupación e indignación la decisión de rechazar la ayuda ofrecida por países dispuestos a enviar personal especializado en búsqueda y rescate, aun cuando existen personas atrapadas bajo los escombros y cada minuto que transcurre puede significar la diferencia entre la vida y la muerte.',
       '',
-      'Es necesario recordarle con claridad que usted no se manda solo. El poder que ejerce le fue delegado por la ciudadanía para proteger a la nación, no para anteponer posturas personales o políticas sobre la supervivencia de la gente. La soberanía reside exclusivamente en el pueblo, y es ante este que usted debe rendir cuentas.',
+      'La aceptación de insumos y suministros humanitarios, aunque necesaria, resulta insuficiente frente a una emergencia de esta naturaleza. Lo que se necesita con urgencia es permitir el ingreso de los equipos humanos capacitados para localizar, rescatar y brindar atención inmediata a las víctimas.',
+      '',
+      'Es necesario recordarle con claridad que usted no se manda solo. El poder que usted ejerce le fue otorgado por el pueblo colombiano para proteger y servir a la nación, no para anteponer posturas personales o políticas a la vida y supervivencia de sus ciudadanos.',
       '',
       'Por lo tanto, la ciudadanía colombiana exige de manera categórica:',
-      '1. Aceptación inmediata: Iniciar de forma urgente los trámites y protocolos necesarios para recibir y distribuir la ayuda humanitaria internacional disponible.',
-      '2. Priorización de la vida: Poner los recursos y el auxilio internacional a disposición directa de las comunidades afectadas, garantizando transparencia y celeridad.',
+      '1. Autorización inmediata de los equipos de rescate: Iniciar de forma urgente los trámites y protocolos necesarios para permitir el ingreso al territorio nacional de los equipos internacionales especializados en búsqueda, rescate y atención de víctimas que se encuentren dispuestos a colaborar en esta emergencia.',
+      '2. Priorización de la vida: Poner todos los recursos nacionales e internacionales disponibles a disposición directa de las comunidades afectadas, garantizando transparencia, coordinación y celeridad en las labores de búsqueda, rescate y atención humanitaria.',
       '',
-      'Esta no es una sugerencia; es una orden directa del pueblo colombiano y es de obligatorio cumplimiento.',
+      'Esta no es una sugerencia. Es una orden dictada por el pueblo colombiano frente a una emergencia en la que cada minuto cuenta y en la que toda posibilidad de salvar una vida debe ser aprovechada.',
       '',
-      'Exigimos que actúe a la altura de las circunstancias que el país requiere. La vida y la dignidad de los colombianos están por encima de cualquier consideración personal o gubernamental.',
+      'Exigimos que actúe a la altura de las circunstancias que el país requiere. La vida y la dignidad de los colombianos están por encima de cualquier consideración personal, política o gubernamental.',
       '',
       'Atentamente,',
       '',
       `${nombre}`,
       `Ciudadano(a) de ${municipio}, ${departamento}`,
-      'En ejercicio de su soberanía constitucional'
+      'En ejercicio de sus derechos ciudadanos'
     ];
 
     let y = 68;
@@ -94,12 +96,12 @@ export default function Home() {
     if (!validarFormulario()) return;
 
     const emailDestino = 'contacto@presidencia.gov.co';
-    const asuntoPredeterminado = `EXIGENCIA CIUDADANA - ACEPTACION DE AYUDA HUMANITARIA - ${municipio.toUpperCase()}, ${departamento.toUpperCase()}`;
+    const asuntoPredeterminado = `EXIGENCIA CIUDADANA - INGRESO DE EQUIPOS DE RESCATE - ${municipio.toUpperCase()}, ${departamento.toUpperCase()}`;
     
     const cuerpoMensaje = 
 `Señor Presidente de la República,
 
-Por medio del presente mensaje, yo, ${nombre}, residente de ${municipio}, ${departamento}, presento formalmente mi exigencia para la aceptación inmediata de la ayuda humanitaria internacional.
+Por medio del presente mensaje, yo, ${nombre}, residente de ${municipio}, ${departamento}, presento formalmente mi exigencia para la aceptación e ingreso inmediato de los equipos internacionales especializados en búsqueda y rescate.
 
 Adjunto a este correo electrónico mi carta formal firmada en formato PDF.
 
@@ -150,7 +152,7 @@ Ciudadano(a) de ${municipio}, ${departamento}`;
                 <label className="block text-xs font-bold text-slate-600 mb-1">Nombre Completo</label>
                 <input
                   type="text"
-                  placeholder="Ej: María Rodríguez"
+                  placeholder="Ej: Kevin Castillo"
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
                   className="w-full p-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-600 outline-none"
@@ -239,20 +241,22 @@ Ciudadano(a) de ${municipio}, ${departamento}`;
             </div>
 
             <p className="font-bold border-l-2 border-slate-900 pl-2">
-              Asunto: Exigencia ciudadana inmediata para la acceptance de ayuda humanitaria internacional
+              Asunto: Exigencia ciudadana inmediata para la aceptación de ayuda humanitaria
             </p>
 
             <p>Señor Presidente:</p>
-            <p>Nos dirigimos a usted en un momento crítico para la nación, donde miles de familias colombianas enfrentan una emergencia desgarradora que requiere soluciones inmediatas...</p>
+            <p>Nos dirigimos a usted en un momento crítico para la nación, donde miles de familias colombianas enfrentan una emergencia desgarradora que requiere soluciones inmediatas, pragmáticas y sin sesgos políticos...</p>
+
+            <p>Hemos recibido con profunda preocupación e indignación la decisión de rechazar la ayuda ofrecida por países dispuestos a enviar personal especializado en búsqueda y rescate...</p>
 
             <div className="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r text-amber-900 font-bold">
-              Esta no es una sugerencia; es una orden directa del pueblo colombiano y es de obligatorio cumplimiento.
+              Esta no es una sugerencia. Es una orden dictada por el pueblo colombiano frente a una emergencia en la que cada minuto cuenta...
             </div>
 
             <div className="pt-4 border-t border-slate-100">
               <p className="font-bold">Atentamente,</p>
               <p className="font-bold text-blue-600 text-base">{nombre || '[Tu Nombre]'}</p>
-              <p className="text-slate-500">Ciudadano(a) de {municipio || '[Municipio]'}, {departamento || '[Departamento]'}</p>
+              <p className="text-slate-500">Ciudadano(a) de {municipio || '[Municipio]'}, {departamento || '[Departamento]'}<br />En ejercicio de sus derechos ciudadanos</p>
             </div>
           </article>
         </section>
