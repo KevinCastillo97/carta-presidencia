@@ -178,8 +178,9 @@ Ciudadano(a) de ${municipio}, ${departamento}`;
           {/* Widget Verificación Captcha */}
           <div className="my-4 flex justify-center bg-slate-50 p-3 rounded-lg border border-slate-200">
             <Turnstile
-  sitekey="0x4AAAAAAENqN3dr0KC1_jkW"
+  sitekey="0x4AAAAAAA..." // 0x4AAAAAAENqN3dr0KC1_jkW
   onVerify={(token) => setCaptchaToken(token)}
+/>
 />
 
           <div className="space-y-3 pt-2">
